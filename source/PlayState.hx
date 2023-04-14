@@ -36,12 +36,12 @@ class PlayState extends FlxState
 
 		if (FlxG.keys.pressed.RIGHT)
 		{
-			camera.scroll.x += elapsed * 40;
+			camera.scroll.x += elapsed * 60;
 		}
 
 		if (FlxG.keys.pressed.LEFT)
 		{
-			camera.scroll.y += elapsed * -40;
+			camera.scroll.y += elapsed * -60;
 		}
 	}
 }
