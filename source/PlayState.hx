@@ -34,14 +34,15 @@ class PlayState extends FlxState
 			FlxG.switchState(new AsteroidsState());
 		}
 
-		if (FlxG.keys.pressed.RIGHT)
+		if (FlxG.mouse.getPosition().x > camera.scroll.x + 420)
 		{
 			camera.scroll.x += elapsed * 60;
 		}
 
-		if (FlxG.keys.pressed.LEFT)
+		if (FlxG.mouse.getPosition().x < camera.scroll.x + 200)
 		{
-			camera.scroll.y += elapsed * -60;
+			trace("left key ");
+			camera.scroll.x += elapsed * -60;
 		}
 	}
 }
