@@ -45,7 +45,7 @@ class PlayState extends FlxState
 
 		var station3Button = createStationButton(() ->
 		{
-			FlxG.switchState(new TelescopeState());
+			FlxG.switchState(new RocketState());
 		}, 400, 400, FlxColor.GREEN);
 
 		add(background);
