@@ -1,9 +1,9 @@
 package;
 
 import flixel.FlxState;
-import moon.MoonHero;
+import station1.MoonHero;
 
-class AsteroidsState extends FlxState
+class Station1State extends FlxState
 {
 	override public function create()
 	{

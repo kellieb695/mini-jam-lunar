@@ -1,4 +1,4 @@
-package moon;
+package station1;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
