@@ -7,7 +7,7 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import station1.MoonHero;
+import telescope.MoonHero;
 
 class PlayState extends FlxState
 {
@@ -35,17 +35,17 @@ class PlayState extends FlxState
 		var station1Button = createStationButton(() ->
 		{
 			// openSubState(station1State);
-			FlxG.switchState(new Station1State());
+			FlxG.switchState(new TelescopeState());
 		}, 200, 400, FlxColor.PINK);
 
 		var station2Button = createStationButton(() ->
 		{
-			FlxG.switchState(new Station1State());
+			FlxG.switchState(new TelescopeState());
 		}, 300, 400, FlxColor.BLUE);
 
 		var station3Button = createStationButton(() ->
 		{
-			FlxG.switchState(new Station1State());
+			FlxG.switchState(new TelescopeState());
 		}, 400, 400, FlxColor.GREEN);
 
 		add(background);

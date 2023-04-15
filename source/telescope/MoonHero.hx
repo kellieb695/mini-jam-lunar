@@ -1,4 +1,4 @@
-package station1;
+package telescope;
 
 import flixel.FlxG;
 import flixel.FlxSprite;

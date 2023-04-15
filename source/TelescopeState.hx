@@ -8,11 +8,12 @@ import flixel.FlxSubState;
 import flixel.FlxSubState;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import station1.MoonHero;
+import telescope.MoonHero;
 
-class Station1State extends FlxState
+class TelescopeState extends FlxState
 {
 	var starrysky:FlxSprite;
+	var starlayer:FlxSprite;
 	var crosshair:FlxSprite;
 	var telecamera:FlxCamera;
 	var quitbutton:FlxButton;
@@ -21,6 +22,9 @@ class Station1State extends FlxState
 	{
 		starrysky = new FlxSprite();
 		starrysky.loadGraphic(AssetPaths.starrysky__png);
+		starlayer = new FlxSprite(-70, -70);
+		starlayer.loadGraphic(AssetPaths.halfstarlayer__png);
+		starlayer.scrollFactor.set(0.9, 0.9);
 		crosshair = new FlxSprite();
 		crosshair.loadGraphic(AssetPaths.crosshair__png);
 		crosshair.scrollFactor.set(0);
@@ -39,6 +43,7 @@ class Station1State extends FlxState
 		add(starrysky);
 		add(new MoonHero(150, 250));
 		add(new MoonHero(300, 150));
+		add(starlayer);
 		add(crosshair);
 		add(quitbutton);
 		super.create();
