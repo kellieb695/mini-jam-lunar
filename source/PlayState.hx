@@ -40,7 +40,7 @@ class PlayState extends FlxState
 
 		var station2Button = createStationButton(() ->
 		{
-			FlxG.switchState(new TelescopeState());
+			FlxG.switchState(new MazeState());
 		}, 300, 400, FlxColor.BLUE);
 
 		var station3Button = createStationButton(() ->
@@ -74,8 +74,6 @@ class PlayState extends FlxState
 	{
 		var button = new FlxButton(0, 0, onClick);
 		button.makeGraphic(50, 50, color);
-		// button.width = button.label.width;
-		// button.height = button.label.height;
 		button.setPosition(posx, posy);
 		button.scrollFactor.set(1);
 
