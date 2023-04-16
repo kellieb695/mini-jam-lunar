@@ -5,10 +5,10 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
-import flixel.addons.ui.FlxButtonPlus;
+import flixel.group.FlxSpriteGroup;
+// import flixel.input.mouse.FlxMouse;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import telescope.MoonHero;
 
 class PlayState extends FlxState
 {
@@ -21,11 +21,12 @@ class PlayState extends FlxState
 	var station1State:FlxSubState;
 
 	var hasKey:Bool = false;
-	var keyButton:FlxButtonPlus;
 	var keySprite:FlxSprite;
+	var inventory:FlxSpriteGroup;
 
 	override public function create()
 	{
+		inventory = new FlxSpriteGroup();
 		background = new FlxSprite();
 		background.loadGraphic(AssetPaths.panmoon__png);
 
@@ -36,7 +37,7 @@ class PlayState extends FlxState
 		scrollcamera.setScrollBoundsRect(0, 0, 2560, 480);
 		FlxG.cameras.reset(scrollcamera);
 
-		keySprite = new FlxSprite(-20, -20);
+		keySprite = new FlxSprite(80, 370);
 		keySprite.loadGraphic(AssetPaths.key__png);
 
 		var station1Button = createStationButton(() ->
@@ -54,19 +55,12 @@ class PlayState extends FlxState
 		{
 			FlxG.switchState(new RocketState());
 		}, 400, 400, FlxColor.GREEN);
-		var keyButton = createKeyButton(() ->
-		{
-			hasKey = true;
-			trace("got key");
-			getKey();
-		}, 70, 370);
 
 		add(background);
 		add(station1Button);
 		add(station2Button);
 		add(station3Button);
 		add(keySprite);
-		add(keyButton);
 		super.create();
 	}
 
@@ -74,15 +68,8 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		if (FlxG.mouse.getPosition().x > scrollcamera.scroll.x + 520)
-		{
-			scrollcamera.scroll.x += elapsed * 90;
-		}
-
-		if (FlxG.mouse.getPosition().x < scrollcamera.scroll.x + 100)
-		{
-			scrollcamera.scroll.x += elapsed * -90;
-		}
+		scrollFunction(elapsed);
+		getKey();
 	}
 
 	private function createStationButton(onClick:Void->Void, posx:Int = 0, posy:Int = 0, color:FlxColor = FlxColor.BLACK):FlxButton
@@ -95,18 +82,26 @@ class PlayState extends FlxState
 		return button;
 	}
 
-	private function createKeyButton(onClick:Void->Void, posx:Int = 0, posy:Int = 0):FlxButtonPlus
+	private function scrollFunction(elapsed:Float)
 	{
-		var button = new FlxButtonPlus(0, 0, onClick);
-		button.loadButtonGraphic(keySprite, keySprite);
-		button.setPosition(posx, posy);
-		button.scrollFactor.set(1);
+		if (FlxG.mouse.getPosition().x > scrollcamera.scroll.x + 520)
+		{
+			scrollcamera.scroll.x += elapsed * 90;
+		}
 
-		return button;
+		if (FlxG.mouse.getPosition().x < scrollcamera.scroll.x + 100)
+		{
+			scrollcamera.scroll.x += elapsed * -90;
+		}
 	}
 
 	private function getKey()
 	{
-		keyButton.kill();
+		if ((FlxG.mouse.justPressed && FlxG.mouse.overlaps(keySprite)))
+		{
+			keySprite.kill();
+			inventory.add(keySprite);
+		}
 	}
 }
+// !(inventory.contains(keySprite)) &&
