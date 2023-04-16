@@ -35,7 +35,7 @@ class RocketState extends FlxState
 		text2.delay = 0.1;
 
 		text4 = new FlxTypeText(75, 75, 500, "\n \n \n \n \n \nSelect launch coordinates>", 20);
-		text2.delay = 0.1;
+		text4.delay = 0.1;
 
 		add(computerscreen);
 		add(quitbutton);
