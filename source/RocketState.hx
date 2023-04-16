@@ -64,13 +64,13 @@ class RocketState extends FlxState
 			++line;
 			trace(line);
 		}
-		if (((FlxG.keys.pressed.Y) && (line == 3)))
+		if (((FlxG.keys.pressed.N) && (line == 3)))
 		{
 			text3.start();
 			++line;
 			trace(line);
 		}
-		if ((FlxG.keys.pressed.N && line == 3))
+		if ((FlxG.keys.pressed.Y && line == 3))
 		{
 			text4.start();
 			++line;
