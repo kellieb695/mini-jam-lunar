@@ -23,7 +23,8 @@ class RocketState extends FlxState
 		quitbutton = createQuitButton("back", () ->
 		{
 			FlxG.switchState(new PlayState());
-		}, 50, 50, FlxColor.LIME);
+		}, 10, 10, FlxColor.LIME);
+
 		computerscreen = new FlxSprite();
 		computerscreen.loadGraphic(AssetPaths.computer__png);
 
@@ -79,13 +80,9 @@ class RocketState extends FlxState
 
 	private function createQuitButton(labelText:String, onClick:Void->Void, posx:Int = 0, posy:Int = 0, color:FlxColor = FlxColor.BLACK):FlxButton
 	{
-		var button = new FlxButton(0, 0, labelText, onClick);
-		button.makeGraphic(30, 30, color);
+		var button = new FlxButton(posx, posy, labelText, onClick);
+		button.makeGraphic(40, 20, color);
 		button.label.size = 10;
-		button.width = button.label.width;
-		button.height = button.label.height;
-		button.setPosition(posx, posy);
-		button.scrollFactor.set(0);
 
 		return button;
 	}

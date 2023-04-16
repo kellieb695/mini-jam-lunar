@@ -22,11 +22,9 @@ class PlayState extends FlxState
 
 	var hasKey:Bool = false;
 	var keySprite:FlxSprite;
-	var inventory:FlxSpriteGroup;
 
 	override public function create()
 	{
-		inventory = new FlxSpriteGroup();
 		background = new FlxSprite();
 		background.loadGraphic(AssetPaths.panmoon__png);
 
@@ -48,7 +46,7 @@ class PlayState extends FlxState
 
 		var station2Button = createStationButton(() ->
 		{
-			FlxG.switchState(new MazeState());
+			FlxG.switchState(new MazeState(hasKey));
 		}, 300, 400, FlxColor.BLUE);
 
 		var station3Button = createStationButton(() ->
@@ -60,7 +58,10 @@ class PlayState extends FlxState
 		add(station1Button);
 		add(station2Button);
 		add(station3Button);
-		add(keySprite);
+		if (!hasKey)
+		{
+			add(keySprite);
+		}
 		super.create();
 	}
 
@@ -100,8 +101,7 @@ class PlayState extends FlxState
 		if ((FlxG.mouse.justPressed && FlxG.mouse.overlaps(keySprite)))
 		{
 			keySprite.kill();
-			inventory.add(keySprite);
+			hasKey = true;
 		}
 	}
 }
-// !(inventory.contains(keySprite)) &&
