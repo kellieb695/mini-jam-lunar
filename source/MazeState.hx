@@ -1,9 +1,9 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.group.FlxSpriteGroup;
 import flixel.tile.FlxTilemap;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
@@ -13,8 +13,11 @@ class MazeState extends FlxState
 	var quitbutton:FlxButton;
 	var maze:FlxTilemap;
 	var sprite:FlxSprite;
+	var warningObject:FlxObject;
 	var book:FlxSprite;
 	var hasKey:Bool;
+	var lockedDoorIndexX:Int = 5;
+	var lockedDoorIndexY:Int = 9;
 
 	public function new(haskey:Bool)
 	{
@@ -50,7 +53,8 @@ class MazeState extends FlxState
 			1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 		], 20, 15, AssetPaths.wall__png, 32, 32);
 
-		sprite = new FlxSprite(320, 240);
+		sprite = new FlxSprite(120, 240);
+		warningObject = new FlxObject((lockedDoorIndexX + 1) * 32, (lockedDoorIndexY + 1) * 32);
 		book = new FlxSprite(360, 240);
 		book.loadGraphic(AssetPaths.book__png);
 
@@ -65,6 +69,7 @@ class MazeState extends FlxState
 		keyboardMovement();
 		getBook();
 		unlockDoor();
+		warning();
 		FlxG.collide(maze, sprite);
 		super.update(elapsed);
 	}
@@ -73,11 +78,24 @@ class MazeState extends FlxState
 	{
 		if (hasKey && FlxG.keys.justPressed.K)
 		{
-			maze.setTile(5, 9, 0, true);
-			trace("tile changed");
-
+			maze.setTile(lockedDoorIndexX, lockedDoorIndexY, 0, true);
 			maze.setTileProperties(0, NONE);
 			maze.setTileProperties(1, ANY);
+		}
+	}
+
+	private function warning()
+	{
+		if (sprite.overlaps(warningObject))
+		{
+			if (hasKey)
+			{
+				trace("press k to unlock");
+			}
+			else
+			{
+				trace("find the key");
+			}
 		}
 	}
 
