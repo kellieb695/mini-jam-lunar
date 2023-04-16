@@ -5,8 +5,6 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
-import flixel.group.FlxSpriteGroup;
-// import flixel.input.mouse.FlxMouse;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 

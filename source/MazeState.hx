@@ -53,7 +53,7 @@ class MazeState extends FlxState
 			1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 		], 20, 15, AssetPaths.wall__png, 32, 32);
 
-		sprite = new FlxSprite(120, 240);
+		sprite = new FlxSprite(320, 240);
 		warningObject = new FlxObject((lockedDoorIndexX + 1) * 32, (lockedDoorIndexY + 1) * 32);
 		book = new FlxSprite(360, 240);
 		book.loadGraphic(AssetPaths.book__png);
@@ -132,7 +132,10 @@ class MazeState extends FlxState
 	{
 		if ((sprite.overlaps(book)))
 		{
-			book.kill();
+			// book.kill();
+			openSubState(new BookSubState());
+			trace("opened");
+			sprite.x -= 5;
 		}
 	}
 }
