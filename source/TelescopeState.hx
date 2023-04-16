@@ -18,6 +18,7 @@ class TelescopeState extends FlxState
 	var telecamera:FlxCamera;
 	var quitbutton:FlxButton;
 	var redPlanet:FlxSprite;
+	var yellowPlanet:FlxSprite;
 	var crosshairPoint:FlxObject;
 	var coordText:FlxText;
 
@@ -33,6 +34,8 @@ class TelescopeState extends FlxState
 		crosshair.scrollFactor.set(0);
 		redPlanet = new FlxSprite(700, 300);
 		redPlanet.loadGraphic(AssetPaths.redplanet__png);
+		yellowPlanet = new FlxSprite(400, 500);
+		yellowPlanet.loadGraphic(AssetPaths.yellowplanet__png);
 		crosshairPoint = new FlxObject(320, 240);
 		crosshairPoint.scrollFactor.set(0);
 		coordText = new FlxText(500, 240, 125, "X Coordinate: \nY Coordinate: ", 10);
@@ -51,6 +54,7 @@ class TelescopeState extends FlxState
 
 		add(starrysky);
 		add(redPlanet);
+		add(yellowPlanet);
 		add(starlayer);
 		add(crosshair);
 		add(quitbutton);
@@ -77,22 +81,22 @@ class TelescopeState extends FlxState
 
 	private function scrollSky(elapsed:Float)
 	{
-		if (FlxG.mouse.getPosition().x > telecamera.scroll.x + 520)
+		if (FlxG.mouse.getPosition().x > telecamera.scroll.x + 395)
 		{
 			telecamera.scroll.x += elapsed * 60;
 		}
 
-		if (FlxG.mouse.getPosition().x < telecamera.scroll.x + 100)
+		if (FlxG.mouse.getPosition().x < telecamera.scroll.x + 245)
 		{
 			telecamera.scroll.x += elapsed * -60;
 		}
 
-		if (FlxG.mouse.getPosition().y > telecamera.scroll.y + 300)
+		if (FlxG.mouse.getPosition().y > telecamera.scroll.y + 150)
 		{
 			telecamera.scroll.y += elapsed * 60;
 		}
 
-		if (FlxG.mouse.getPosition().y < telecamera.scroll.y + 100)
+		if (FlxG.mouse.getPosition().y < telecamera.scroll.y + 330)
 		{
 			telecamera.scroll.y += elapsed * -60;
 		}
