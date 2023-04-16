@@ -14,7 +14,6 @@ class RocketState extends FlxState
 	var computerscreen:FlxSprite;
 	var text1:FlxTypeText;
 	var text2:FlxTypeText;
-	var text3:FlxTypeText;
 	var text4:FlxTypeText;
 	var line:Int = 1;
 
@@ -28,23 +27,20 @@ class RocketState extends FlxState
 		computerscreen = new FlxSprite();
 		computerscreen.loadGraphic(AssetPaths.computer__png);
 
-		text1 = new FlxTypeText(75, 75, 500, "\nuser@8du7z35f> ", 20);
-		text1.prefix = "Press enter to proceed> ";
+		text1 = new FlxTypeText(75, 75, 500, "\nuser@4jd9sj7s3>", 20);
+		text1.prefix = "Press enter to proceed> \n ";
 		text1.delay = 0.1;
 
-		text2 = new FlxTypeText(75, 75, 500, "\n \nY/N? ", 20);
+		text2 = new FlxTypeText(75, 75, 500, "\n \n \n \nAuthorizing...", 20);
 		text2.delay = 0.1;
 
-		text3 = new FlxTypeText(75, 75, 500, "\n \n \nYou are not authorized to launch. ", 20);
-		text2.delay = 0.1;
-		text4 = new FlxTypeText(75, 75, 500, "\n \n \n \nPlease select launch coordinates", 20);
+		text4 = new FlxTypeText(75, 75, 500, "\n \n \n \n \n \nSelect launch coordinates>", 20);
 		text2.delay = 0.1;
 
 		add(computerscreen);
 		add(quitbutton);
 		add(text1);
 		add(text2);
-		add(text3);
 		add(text4);
 		super.create();
 	}
@@ -52,28 +48,21 @@ class RocketState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (((FlxG.keys.pressed.ENTER) && (line == 1)))
+		if (((FlxG.keys.justReleased.ENTER) && (line == 1)))
 		{
 			text1.start();
 			++line;
 			trace(line);
 		}
-		if (((FlxG.keys.pressed.ENTER) && (line == 2)))
+		else if ((FlxG.keys.justReleased.ENTER && (line == 2)))
 		{
 			text2.start();
 			++line;
 			trace(line);
 		}
-		if (((FlxG.keys.pressed.N) && (line == 3)))
-		{
-			text3.start();
-			++line;
-			trace(line);
-		}
-		if ((FlxG.keys.pressed.Y && line == 3))
+		else if ((FlxG.keys.justReleased.ENTER && line == 3))
 		{
 			text4.start();
-			++line;
 			trace(line);
 		}
 	}
