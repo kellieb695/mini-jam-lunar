@@ -24,6 +24,7 @@ class PlayState extends FlxState
 	var telescopeSprite:FlxSprite;
 	var caveSprite:FlxSprite;
 	var compSprite:FlxSprite;
+	var rocketSprite:FlxSprite;
 
 	// public function new(haskey:Bool)
 	// {
@@ -51,27 +52,35 @@ class PlayState extends FlxState
 		caveSprite.loadGraphic(AssetPaths.cave__png);
 		compSprite = new FlxSprite(-100, -100);
 		compSprite.loadGraphic(AssetPaths.thecomputer__png);
+		rocketSprite = new FlxSprite(-100, -100);
+		rocketSprite.loadGraphic(AssetPaths.moonspritesheet__png);
 
-		var station1Button = createStationButton(() ->
+		var telescopeButton = createStationButton(() ->
 		{
 			// openSubState(station1State);
 			FlxG.switchState(new TelescopeState());
 		}, 130, 280, telescopeSprite);
 
-		var station2Button = createStationButton(() ->
+		var caveButton = createStationButton(() ->
 		{
 			FlxG.switchState(new MazeState(hasKey));
 		}, 300, 270, caveSprite);
 
-		var station3Button = createStationButton(() ->
+		var computerButton = createStationButton(() ->
 		{
-			FlxG.switchState(new RocketState());
+			FlxG.switchState(new ComputerState());
 		}, 600, 300, compSprite);
 
+		var rocketButton = createStationButton(() ->
+		{
+			FlxG.switchState(new ComputerState());
+		}, 600, 300, rocketSprite);
+
 		add(background);
-		add(station1Button);
-		add(station2Button);
-		add(station3Button);
+		add(telescopeButton);
+		add(caveButton);
+		add(computerButton);
+		add(rocketButton);
 		add(keySprite);
 		if (hasKey)
 		{
