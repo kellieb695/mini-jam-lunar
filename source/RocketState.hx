@@ -17,7 +17,7 @@ class RocketState extends FlxState
 	{
 		super.create();
 		rocket = new FlxSprite(300, 400);
-		rocket.loadGraphic(AssetPaths.rocketspritesheet__png);
+		rocket.loadGraphic(AssetPaths.rocket__png);
 		countdownTimer = new FlxTypeText(150, 20, 640, "9...\n8...\n7...\n6...\n5...\n4...\n3...\n2...\n1...", 35);
 		countdownTimer.prefix = "10...\n";
 		countdownTimer.delay = 0.1;

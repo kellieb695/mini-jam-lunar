@@ -41,10 +41,10 @@ class PlayState extends FlxState
 
 		scrollcamera = new FlxCamera(0, 0, 640, 480);
 		scrollcamera.bgColor = FlxColor.TRANSPARENT;
-		scrollcamera.setScrollBoundsRect(0, 0, 2560, 480);
+		scrollcamera.setScrollBoundsRect(0, 0, 1240, 480);
 		FlxG.cameras.reset(scrollcamera);
 
-		keySprite = new FlxSprite(80, 370);
+		keySprite = new FlxSprite(900, 370);
 		keySprite.loadGraphic(AssetPaths.key__png);
 		telescopeSprite = new FlxSprite(-100, -100);
 		telescopeSprite.loadGraphic(AssetPaths.telescope__png);
@@ -52,36 +52,37 @@ class PlayState extends FlxState
 		caveSprite.loadGraphic(AssetPaths.cave__png);
 		compSprite = new FlxSprite(-100, -100);
 		compSprite.loadGraphic(AssetPaths.thecomputer__png);
-		rocketSprite = new FlxSprite(-100, -100);
-		rocketSprite.loadGraphic(AssetPaths.moonspritesheet__png);
+		rocketSprite = new FlxSprite(20, 400);
+		rocketSprite.loadGraphic(AssetPaths.rocket__png);
 
 		var telescopeButton = createStationButton(() ->
 		{
 			// openSubState(station1State);
 			FlxG.switchState(new TelescopeState());
-		}, 130, 280, telescopeSprite);
+		}, 1100, 280, telescopeSprite);
 
 		var caveButton = createStationButton(() ->
 		{
 			FlxG.switchState(new MazeState(hasKey));
-		}, 300, 270, caveSprite);
+		}, 150, 270, caveSprite);
 
 		var computerButton = createStationButton(() ->
 		{
 			FlxG.switchState(new ComputerState());
-		}, 600, 300, compSprite);
+		}, 700, 300, compSprite);
 
-		var rocketButton = createStationButton(() ->
-		{
-			FlxG.switchState(new ComputerState());
-		}, 600, 300, rocketSprite);
+		// var rocketButton = createStationButton(() ->
+		// {
+		// 	FlxG.switchState(new ComputerState());
+		// }, 600, 300, rocketSprite);
 
 		add(background);
 		add(telescopeButton);
 		add(caveButton);
 		add(computerButton);
-		add(rocketButton);
+		// add(rocketButton);
 		add(keySprite);
+		add(rocketSprite);
 		if (hasKey)
 		{
 			keySprite.kill();
@@ -111,12 +112,12 @@ class PlayState extends FlxState
 	{
 		if (FlxG.mouse.getPosition().x > scrollcamera.scroll.x + 520)
 		{
-			scrollcamera.scroll.x += elapsed * 90;
+			scrollcamera.scroll.x += elapsed * 150;
 		}
 
 		if (FlxG.mouse.getPosition().x < scrollcamera.scroll.x + 100)
 		{
-			scrollcamera.scroll.x += elapsed * -90;
+			scrollcamera.scroll.x += elapsed * -150;
 		}
 	}
 
