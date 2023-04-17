@@ -24,7 +24,6 @@ class PlayState extends FlxState
 	var telescopeSprite:FlxSprite;
 	var caveSprite:FlxSprite;
 	var compSprite:FlxSprite;
-	var rocketSprite:FlxSprite;
 
 	// public function new(haskey:Bool)
 	// {
@@ -44,7 +43,7 @@ class PlayState extends FlxState
 		scrollcamera.setScrollBoundsRect(0, 0, 1240, 480);
 		FlxG.cameras.reset(scrollcamera);
 
-		keySprite = new FlxSprite(900, 370);
+		keySprite = new FlxSprite(1200, 420);
 		keySprite.loadGraphic(AssetPaths.key__png);
 		telescopeSprite = new FlxSprite(-100, -100);
 		telescopeSprite.loadGraphic(AssetPaths.telescope__png);
@@ -52,14 +51,11 @@ class PlayState extends FlxState
 		caveSprite.loadGraphic(AssetPaths.cave__png);
 		compSprite = new FlxSprite(-100, -100);
 		compSprite.loadGraphic(AssetPaths.thecomputer__png);
-		rocketSprite = new FlxSprite(20, 400);
-		rocketSprite.loadGraphic(AssetPaths.rocket__png);
 
 		var telescopeButton = createStationButton(() ->
 		{
-			// openSubState(station1State);
 			FlxG.switchState(new TelescopeState());
-		}, 1100, 280, telescopeSprite);
+		}, 1000, 280, telescopeSprite);
 
 		var caveButton = createStationButton(() ->
 		{
@@ -71,18 +67,11 @@ class PlayState extends FlxState
 			FlxG.switchState(new ComputerState());
 		}, 700, 300, compSprite);
 
-		// var rocketButton = createStationButton(() ->
-		// {
-		// 	FlxG.switchState(new ComputerState());
-		// }, 600, 300, rocketSprite);
-
 		add(background);
 		add(telescopeButton);
 		add(caveButton);
 		add(computerButton);
-		// add(rocketButton);
 		add(keySprite);
-		add(rocketSprite);
 		if (hasKey)
 		{
 			keySprite.kill();

@@ -32,10 +32,14 @@ class RocketState extends FlxState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		if (rocket.isOnScreen())
+		{
+			animateRocket(elapsed);
+		}
 	}
 
-	private function animateRocket()
+	private function animateRocket(elapsed:Float)
 	{
-		rocket.y -= 5;
+		rocket.y -= elapsed * 25;
 	}
 }
