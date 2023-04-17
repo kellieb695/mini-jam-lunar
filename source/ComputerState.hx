@@ -87,7 +87,7 @@ class ComputerState extends FlxState
 		if (FlxG.keys.justReleased.SPACE)
 		{
 			trace("space");
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(new RocketState());
 		}
 	}
 }
