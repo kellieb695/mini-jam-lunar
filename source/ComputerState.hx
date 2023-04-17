@@ -12,6 +12,7 @@ class ComputerState extends FlxState
 {
 	var quitbutton:FlxButton;
 	var computerscreen:FlxSprite;
+	var text0:FlxTypeText;
 	var text1:FlxTypeText;
 	var text2:FlxTypeText;
 	var text3:FlxTypeText;
@@ -21,6 +22,7 @@ class ComputerState extends FlxState
 	var xcoordInput:Int;
 	var ycoordInput:Int;
 	var textReauth:FlxTypeText;
+	var fontSize:Int;
 
 	override public function create()
 	{
@@ -29,33 +31,46 @@ class ComputerState extends FlxState
 		{
 			FlxG.switchState(new PlayState());
 		}, 10, 10, FlxColor.LIME);
-
+		fontSize = 15;
 		computerscreen = new FlxSprite();
 		computerscreen.loadGraphic(AssetPaths.computer__png);
 
-		text1 = new FlxTypeText(75, 75, 500, "\n>user@4jd9sj7s3", 15);
-		text1.prefix = ">Press enter to proceed \n ";
+		text0 = new FlxTypeText(50, 75, 500, ">Press enter to proceed or R to restart  ", 15);
+		text0.delay = 0.1;
+		text0.color = FlxColor.LIME;
+
+		text1 = new FlxTypeText(50, 75, 500, "\n \n>user@4jd9sj7s3", 15);
+		// text1.prefix = ">Press enter to proceed or R to restart \n ";
 		text1.delay = 0.1;
+		text1.color = FlxColor.LIME;
 
-		text2 = new FlxTypeText(75, 75, 500, "\n \n \n \nAuthorizing...", 15);
+		text2 = new FlxTypeText(50, 75, 500, "\n \n \n \n>Authorizing...     ", 15);
 		text2.delay = 0.1;
+		text2.color = FlxColor.LIME;
 
-		text3 = new FlxTypeText(75, 75, 500, "\n \n \n \n \n \n>Select launch coordinates with arrow keys", 15);
+		text3 = new FlxTypeText(50, 75, 500, "\n \n \n \n \n \n>Select launch coordinates with arrow keys           ", 15);
 		text3.delay = 0.1;
+		text3.color = FlxColor.LIME;
+
 		xcoordInput = 100;
 		ycoordInput = 100;
-		textx = new FlxText(75, 75, 500, "\n \n \n \n \n \n \n \nX Coordinate: " + xcoordInput + "\n", 15);
-		texty = new FlxText(75, 75, 500, "\n \n \n \n \n \n \n \n \n \nY Coordinate: " + ycoordInput, 15);
+		textx = new FlxText(50, 75, 500, "\n \n \n \n \n \n \n \n>X Coordinate: " + xcoordInput + "\n", 15);
+		texty = new FlxText(50, 75, 500, "\n \n \n \n \n \n \n \n \n \n>Y Coordinate: " + ycoordInput, 15);
+		textx.color = FlxColor.LIME;
+		texty.color = FlxColor.LIME;
 
-		textReauth = new FlxTypeText(75, 75, 500, "Wrong coordinates...\n \nReauthorizing...               ", 15);
+		textReauth = new FlxTypeText(50, 75, 500, ">Wrong coordinates...\n \n>Reauthorizing...               ", 15);
 		textReauth.prefix = "\n \n \n \n \n \n \n \n \n \n \n \n";
 		textReauth.delay = 0.1;
+		textReauth.color = FlxColor.LIME;
 
 		add(computerscreen);
 		add(quitbutton);
+		add(text0);
 		add(text1);
 		add(text2);
 		add(text3);
+		text0.start();
 	}
 
 	override public function update(elapsed:Float)
@@ -84,6 +99,10 @@ class ComputerState extends FlxState
 
 	private function processEnter()
 	{
+		if ((FlxG.keys.justReleased.R))
+		{
+			FlxG.switchState(new ComputerState());
+		}
 		if ((FlxG.keys.justReleased.ENTER) && (line == 7))
 		{
 			if ((xcoordInput < 496) && (xcoordInput > 400) && (ycoordInput < 596) && (ycoordInput > 500))
@@ -145,13 +164,12 @@ class ComputerState extends FlxState
 		if (FlxG.keys.pressed.UP)
 		{
 			xcoordInput++;
-			textx.text = "\n \n \n \n \n \n \n \nX Coordinate: " + xcoordInput + "\n";
 		}
 		if (FlxG.keys.pressed.DOWN)
 		{
 			xcoordInput--;
-			textx.text = "\n \n \n \n \n \n \n \nX Coordinate: " + xcoordInput + "\n";
 		}
+		textx.text = "\n \n \n \n \n \n \n \n>X Coordinate: " + xcoordInput + "\n";
 	}
 
 	private function updateY()
@@ -159,12 +177,11 @@ class ComputerState extends FlxState
 		if (FlxG.keys.pressed.UP)
 		{
 			ycoordInput++;
-			texty.text = "\n \n \n \n \n \n \n \n \n \nY Coordinate: " + ycoordInput + "\n";
 		}
 		if (FlxG.keys.pressed.DOWN)
 		{
 			ycoordInput--;
-			texty.text = "\n \n \n \n \n \n \n \n \n \nY Coordinate: " + ycoordInput + "\n";
 		}
+		texty.text = "\n \n \n \n \n \n \n \n \n \n>Y Coordinate: " + ycoordInput + "\n";
 	}
 }
