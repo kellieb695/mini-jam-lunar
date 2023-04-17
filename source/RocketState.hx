@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.addons.text.FlxTypeText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
