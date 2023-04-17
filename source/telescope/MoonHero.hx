@@ -1,4 +1,4 @@
-package moon;
+package telescope;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
