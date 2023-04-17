@@ -22,6 +22,7 @@ class ComputerState extends FlxState
 	var xcoordInput:Int;
 	var ycoordInput:Int;
 	var textReauth:FlxTypeText;
+	var textLaunch:FlxTypeText;
 	var fontSize:Int;
 
 	override public function create()
@@ -63,6 +64,11 @@ class ComputerState extends FlxState
 		textReauth.prefix = "\n \n \n \n \n \n \n \n \n \n \n \n";
 		textReauth.delay = 0.1;
 		textReauth.color = FlxColor.LIME;
+
+		textLaunch = new FlxTypeText(50, 75, 500, ">Launching in 10 seconds...          ", 15);
+		textLaunch.prefix = "\n \n \n \n \n \n \n \n \n \n \n \n";
+		textLaunch.delay = 0.1;
+		textLaunch.color = FlxColor.LIME;
 
 		add(computerscreen);
 		add(quitbutton);
@@ -107,7 +113,12 @@ class ComputerState extends FlxState
 		{
 			if ((xcoordInput < 496) && (xcoordInput > 400) && (ycoordInput < 596) && (ycoordInput > 500))
 			{
-				FlxG.switchState(new RocketState());
+				add(textLaunch);
+				textLaunch.start();
+				textLaunch.completeCallback = () ->
+				{
+					FlxG.switchState(new RocketState());
+				};
 			}
 			else
 			{
@@ -117,7 +128,6 @@ class ComputerState extends FlxState
 				{
 					FlxG.switchState(new ComputerState());
 				};
-				trace("wrong lol");
 			}
 		}
 		if ((FlxG.keys.justReleased.ENTER) && (line == 5))

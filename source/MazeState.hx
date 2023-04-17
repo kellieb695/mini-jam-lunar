@@ -16,8 +16,8 @@ class MazeState extends FlxState
 	var warningObject:FlxObject;
 	var book:FlxSprite;
 	var hasKey:Bool;
-	var lockedDoorIndexX:Int = 5;
-	var lockedDoorIndexY:Int = 9;
+	var lockedDoorIndexX:Int = 18;
+	var lockedDoorIndexY:Int = 4;
 
 	public function new(haskey:Bool)
 	{
@@ -37,13 +37,13 @@ class MazeState extends FlxState
 		maze = new FlxTilemap();
 		maze.loadMapFromArray([
 			1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-			1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-			1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1,
-			1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1,
+			1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+			1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1,
+			1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1,
 			1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
-			1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1,
-			1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,
-			1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+			1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1,
+			1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1,
+			1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
 			1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1,
 			1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1,
 			0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1,
@@ -88,14 +88,15 @@ class MazeState extends FlxState
 	{
 		if (sprite.overlaps(warningObject))
 		{
-			if (hasKey)
-			{
-				trace("press k to unlock");
-			}
-			else
-			{
-				trace("find the key");
-			}
+			openSubState(new KeyInstructionsSubState(hasKey));
+			// if (hasKey)
+			// {
+			// 	trace("press k to unlock");
+			// }
+			// else
+			// {
+			// 	trace("find the key");
+			// }
 		}
 	}
 
@@ -112,19 +113,19 @@ class MazeState extends FlxState
 	{
 		if (FlxG.keys.pressed.RIGHT)
 		{
-			sprite.x += 1;
+			sprite.x += 2;
 		}
 		if (FlxG.keys.pressed.LEFT)
 		{
-			sprite.x -= 1;
+			sprite.x -= 2;
 		}
 		if (FlxG.keys.pressed.DOWN)
 		{
-			sprite.y += 1;
+			sprite.y += 2;
 		}
 		if (FlxG.keys.pressed.UP)
 		{
-			sprite.y -= 1;
+			sprite.y -= 2;
 		}
 	}
 
