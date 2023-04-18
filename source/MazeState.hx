@@ -54,6 +54,7 @@ class MazeState extends FlxState
 		], 20, 15, AssetPaths.wall__png, 32, 32);
 
 		sprite = new FlxSprite(5, 328);
+		sprite.makeGraphic(20, 20, FlxColor.GRAY);
 		warningObject = new FlxObject((lockedDoorIndexX + 1) * 32, (lockedDoorIndexY + 1) * 32);
 		book = new FlxSprite(38, 38);
 		book.loadGraphic(AssetPaths.book__png);
