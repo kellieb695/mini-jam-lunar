@@ -34,7 +34,7 @@ class KeyInstructionsSubState extends FlxSubState
 		}
 		else
 		{
-			note.loadGraphic(AssetPaths.pressk__png);
+			note.loadGraphic(AssetPaths.findkey__png);
 		}
 
 		add(note);
